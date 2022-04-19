@@ -6,7 +6,7 @@
 Github repository for the SLAE32 exam (PA-6483).
 
 ## Assignments
-- [ ] A1 - TCP Bind Shell - [Blog Post](https://jacklgmcbride.co.uk/blog/)
+- [x] A1 - TCP Bind Shell - [Blog Post](https://jacklgmcbride.co.uk/blog/)
 - [ ] A2 - TCP Reverse Shell - [Blog Post](https://jacklgmcbride.co.uk/blog/)
 - [ ] A3 - Egg Hunter - [Blog Post](https://jacklgmcbride.co.uk/blog/)
 - [ ] A4 - Custom Encoder  - [Blog Post](https://jacklgmcbride.co.uk/blog/)
