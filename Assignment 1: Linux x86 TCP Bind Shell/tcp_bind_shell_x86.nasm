@@ -1,10 +1,10 @@
-; bind_tcp_shell.nasm 
+; tcp_bind_shell_x86.nasm 
 ; Author: Jack McBride (PA-6483)
 ; Website: https://jacklgmcbride.co.uk
 ; 
 ; Purpose: SLAE32 exam assignment
 ;
-; Assignment 1: Bind TCP Shell
+; Assignment 1: Linux x86 TCP Bind Shell
 
 
 global _start
@@ -13,10 +13,12 @@ section .text
 
 _start:
 			; Linux x86 bind tcp shell
-			; set up socket
-			; set up bind
-			; set up listen
-			; set up accept
+			; set up socket()
+			; set up bind()
+			; set up listen()
+			; set up accept()
+			; set up dup2()
+			; set up execve()
 
 _socket:
 
