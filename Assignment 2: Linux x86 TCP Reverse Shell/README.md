@@ -32,12 +32,7 @@ Start a netcat listener on the remote host:
 
 ```bash
 nc -nlvp 4444                                                                                                                           1 ⨯
-hostname
-kali
-whoami
-root
-id
-uid=0(root) gid=0(root) groups=0(root)
+listening on [any] 4444 ...
 ```
 
 Run the compiled binary:
