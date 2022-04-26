@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import argparse
 import sys
 import os
@@ -41,7 +43,6 @@ def main():
 	os.system('nasm -f elf32 -o tcp_bind_shell_x86.o tmp.nasm')
 	os.system('ld -o tcp_bind_shell_x86 tcp_bind_shell_x86.o')
 	
-
 	# Dump the shellcode using objdump
 	shellcode = gen_shellcode()
 
