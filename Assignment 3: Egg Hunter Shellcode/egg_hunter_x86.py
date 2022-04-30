@@ -77,7 +77,7 @@ def main():
 	parser.add_argument('-x', '--payload', type=str, help='Type of payload to execute', choices=payload_choices)
 	parser.add_argument('-l', '--lhost', required=(payload_choices[1] in sys.argv), type=str, help='Remote IPv4 address for TCP reverse shell to connect to.', default="127.0.0.1")
 	parser.add_argument('-p', '--lport', type=int, help='Remote port for TCP reverse shell to connect to.', choices=range(0,65535), metavar="{0..65535}", default=4444)
-	parser.add_argument('-s', '--shellcode', help='Output shellcode only')
+	parser.add_argument('-s', '--shellcode', help='Output shellcode only', action='store_true')
 	
 	args = parser.parse_args()
 	
