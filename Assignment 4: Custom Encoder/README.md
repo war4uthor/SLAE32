@@ -1,6 +1,6 @@
 # Assignment 4: Custom Encoder
 
-Custom shellcode encoder which uses NOT, XOR and insertion.
+Custom shellcode encoder which uses NOT encoding, XOR encryption and insertion.
 
 To generate an encoded shellcode payload of your choice, first place the original shellcode into the `shellcode` variable of `custom_encoder.py`:
 
