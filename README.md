@@ -10,6 +10,6 @@ Github repository for the SLAE32 exam (PA-6483).
 - [x] A2 - Linux x86 TCP Reverse Shell - [Blog Post](https://jacklgmcbride.co.uk/blog/)
 - [x] A3 - Egg Hunter Shellcode - [Blog Post](https://jacklgmcbride.co.uk/blog/)
 - [x] A4 - Custom Encoder  - [Blog Post](https://jacklgmcbride.co.uk/blog/)
-- [x] A5 - MSFVenom Shellcode Analysis - [Blog Post](https://jacklgmcbride.co.uk/blog/)
-- [ ] A6 - Polymorphism - [Blog Post](https://jacklgmcbride.co.uk/blog/)
+- [x] A5 - MSFvenom Shellcode Analysis - [Blog Post](https://jacklgmcbride.co.uk/blog/)
+- [x] A6 - Polymorphism - [Blog Post](https://jacklgmcbride.co.uk/blog/)
 - [ ] A7 - Custom Crypter - [Blog Post](https://jacklgmcbride.co.uk/blog/)
