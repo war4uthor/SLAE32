@@ -1,4 +1,4 @@
-; flush_iptables_polymorphic - X bytes
+; flush_iptables_polymorphic - 49 bytes
 ; Author: Jack McBride (PA-6483)
 ; Website: https://jacklgmcbride.co.uk
 ;
