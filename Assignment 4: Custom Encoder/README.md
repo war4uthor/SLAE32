@@ -9,7 +9,7 @@ To generate an encoded shellcode payload of your choice, first place the origina
 
 # Python Custom Shellcode Encoder
 # Shellcode is XOR encoded with a key of 0x7 and then NOT encoded
-# Next, a random number between 1 and 100 is inserted to pad the shellcode
+# Next, a byte 0xBA is inserted to pad the shellcode
 
 import random
 
