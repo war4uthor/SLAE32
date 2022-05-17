@@ -3,7 +3,7 @@
 The shellcode featured in this directory are polymorphic versions of the following three shellcodes from [ShellStorm](https://shell-storm.org)
 
 - Shellcode 1: - [Linux/x86 - ASLR deactivation - 83 bytes](https://shell-storm.org/shellcode/files/shellcode-813.php) _by Jean Pascal Pereira_
-- Shellcode 2: - [Linux/x86 - add root user (r00t) with no password to /etc/passwd](https://shell-storm.org/shellcode/files/shellcode-211.php) _by Kris Katterjohn_
+- Shellcode 2: - [Linux/x86 - add root user (r00t) with no password to /etc/passwd - 69 bytes](https://shell-storm.org/shellcode/files/shellcode-211.php) _by Kris Katterjohn_
 - Shellcode 3: - [Linux/x86 - execve() of /sbin/iptables -F - 70 bytes](https://shell-storm.org/shellcode/files/shellcode-545.php) _by zillion_
 
 In order to generate the shellcode, it must be compiled using nasm as follows:
